@@ -163,7 +163,7 @@ public class RecipeGenerator {
 			String name = matcher.group("name");
 			int level = parseIntIgnoringCommas(matcher.group("level"));
 			List<String> mobLore = getLore(mobStack);
-			int coins = 0, xp = 0, combatXp = 0;
+			int coins = 0, xp = 0, combatXp = 0, farmingXp = 0;
 			List<MobLootRecipe.MobDrop> drops = new ArrayList<>();
 			for (String loreLine : mobLore) {
 				Matcher loreMatcher = LORE_PATTERN.matcher(loreLine);
@@ -202,6 +202,7 @@ public class RecipeGenerator {
 				coins,
 				xp,
 				combatXp,
+				farmingXp,
 				name,
 				null,
 				new ArrayList<>(),

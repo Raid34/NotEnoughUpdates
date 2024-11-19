@@ -112,6 +112,7 @@ public class MobLootRecipe implements NeuRecipe {
 	private final List<MobDrop> drops;
 	private final int coins;
 	private final int combatXp;
+	private final int farmingXp;
 	private final int xp;
 	private final String name;
 	private final String render;
@@ -130,6 +131,7 @@ public class MobLootRecipe implements NeuRecipe {
 		int coins,
 		int xp,
 		int combatXp,
+		int farmingXp,
 		String name,
 		String render,
 		List<String> extra,
@@ -142,6 +144,7 @@ public class MobLootRecipe implements NeuRecipe {
 		this.xp = xp;
 		this.extra = extra;
 		this.combatXp = combatXp;
+		this.farmingXp = farmingXp;
 		this.name = name;
 		this.render = render;
 		this.panoName = panoName;
@@ -289,6 +292,8 @@ public class MobLootRecipe implements NeuRecipe {
 				stuff.add("§r§aExperience: " + xp);
 			if (combatXp > 0)
 				stuff.add("§r§bCombat Experience: " + combatXp);
+			if (farmingXp > 0)
+				stuff.add("§r§bFarming Experience: " + farmingXp);
 			stuff.addAll(extra);
 			Utils.drawHoveringText(stuff, mouseX, mouseY, gui.width, gui.height, -1);
 		}
@@ -306,6 +311,7 @@ public class MobLootRecipe implements NeuRecipe {
 		recipe.addProperty("coins", coins);
 		recipe.addProperty("xp", xp);
 		recipe.addProperty("combat_xp", combatXp);
+		recipe.addProperty("farming_xp", farmingXp);
 		recipe.addProperty("name", name);
 		recipe.addProperty("render", render);
 		recipe.addProperty("type", getType().getId());
@@ -355,6 +361,7 @@ public class MobLootRecipe implements NeuRecipe {
 			recipe.has("coins") ? recipe.get("coins").getAsInt() : 0,
 			recipe.has("xp") ? recipe.get("xp").getAsInt() : 0,
 			recipe.has("combat_xp") ? recipe.get("combat_xp").getAsInt() : 0,
+			recipe.has("farming_xp") ? recipe.get("farming_xp").getAsInt() : 0,
 			recipe.get("name").getAsString(),
 			recipe.has("render") && !recipe.get("render").isJsonNull() ? recipe.get("render").getAsString() : null,
 			JsonUtils.getJsonArrayOrEmpty(recipe, "extra", JsonElement::getAsString),
